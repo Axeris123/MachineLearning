@@ -1,0 +1,7 @@
+.DS_Store
+*.model
+*.predict
+VowpalShuffled.jl
+VowpalTrainSet.jl
+VowpalTestSet.jl
+VowpalReviews.jl
