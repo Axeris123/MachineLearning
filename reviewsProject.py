@@ -168,12 +168,12 @@ def main():
     if os.path.exists(TRAIN_SET) and os.path.exists(TEST_SET):
         run(["vw", "--oaa", "5", "--loss_function=logistic", TRAIN_SET, "-f", MODEL])
         run(["vw", "-t", "-i", MODEL, TEST_SET, "-p", PREDICTIONS])
+        if os.path.exists(MODEL) and os.path.exists(PREDICTIONS):
+            give_results()
+        else:
+            print('Nie udało się poprawnie wygenerować modelu statystycznego!')
     else:
         print('Nie udało się wygenerować zbioru testowego i uczącego!')
-    if os.path.exists(MODEL) and os.path.exists(PREDICTIONS):
-        give_results()
-    else:
-        print('Nie udało się poprawnie wygenerować modelu statystycznego!')
 
 
 if __name__ == "__main__":
