@@ -1,6 +1,7 @@
 .DS_Store
 *.model
 *.predict
+.idea
 VowpalShuffled.jl
 VowpalTrainSet.jl
 VowpalTestSet.jl

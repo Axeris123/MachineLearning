@@ -7,27 +7,21 @@ tenPercent = round(num_lines * 0.1)
 
 setToRewrite = random.sample(list(open(fileName)), tenPercent)
 
-
-reviewSet = open(fileName,"r")
+reviewSet = open(fileName, "r")
 lines = reviewSet.readlines()
 reviewSet.close()
 
-rewriteFile = open('VowpalTrainSet.jl',"w")
-
-licznik = 0
-for line in lines:
-    if line not in setToRewrite:
-        rewriteFile.write(line)
-    licznik += 1
-    print(licznik)
-
-rewriteFile.close()
-
-
 endFile = open("VowpalTestSet.jl", 'w')
-licznik = 0
+
+lines = set(lines) - set(setToRewrite)
+
 for t in setToRewrite:
     endFile.write(t)
-    licznik +=1
-    print(licznik)
 endFile.close()
+
+rewriteFile = open('VowpalTrainSet.jl', "w")
+
+for line in lines:
+    rewriteFile.write(line)
+
+rewriteFile.close()

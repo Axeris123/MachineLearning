@@ -8,8 +8,6 @@ predictionsFile = open('reviews.predict',"r")
 predictions = predictionsFile.readlines()
 predictionsFile.close()
 predictions = [int(num) for num in predictions]
-print(predictions)
-
 tests = []
 
 
@@ -33,5 +31,3 @@ print("Accuracy: ", accuracy)
 print("Recall: ", recall)
 print("Precision: ", precision)
 print("F-measure: ", fmeasure)
-
-
