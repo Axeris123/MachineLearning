@@ -1,2 +1,1 @@
-ReviewsFile.jl filter=lfs diff=lfs merge=lfs -text
-VowpalReviews.jl filter=lfs diff=lfs merge=lfs -text
+reviews/ReviewsFile.jl filter=lfs diff=lfs merge=lfs -text

@@ -5,3 +5,4 @@
 VowpalShuffled.jl
 VowpalTrainSet.jl
 VowpalTestSet.jl
+VowpalReviews.jl

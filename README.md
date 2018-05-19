@@ -8,6 +8,23 @@ Jest to projekt z uczenia maszynowego na przedmiot Przetwarzanie Języka Natural
 
 * [Plik z recenzjami] Recenzje zescrape'owane z Amazona znajdują się w pliku ReviewsFile.jl. Możliwe jest scrape'owanie recenzji z innych portali, jednak wtedy trzeba byłoby odpowiednio zmodyfikować skrypt generateVowpal.py
 
+* Pakiety scikit-learn wraz z zależnościami(scipy, numpy), progressbar, nltk
+
+# Nowa instrukcja
+W celu zanstalowania wszystkich potrzebnych pakietów należy wywołać polecenie:
+
+```
+pip install -r requirements.txt
+```
+
+Następnie, w celu uruchomienia programu i wykonania wszystkich rzeczy, które były robione po kolei przez poniższe skrypty, wywołujemy:
+
+```
+python reviewsProject.py
+```
+
+I to tyle :)
+
 ### Generowanie pliku w formacie akceptowanym przez Vowpala
 
 W celu przekonwertowania pliku z recenzjami na plik akceptowany przez Vowpala służy skrypt generateVowpal.py. Uruchamiamy go poleceniem:
