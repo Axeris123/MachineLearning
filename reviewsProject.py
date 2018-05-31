@@ -6,6 +6,7 @@ import os
 from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
 from subprocess import run
 from nltk import sent_tokenize
+from nltk.tag.perceptron import PerceptronTagger
 from nltk.tokenize import ToktokTokenizer
 
 REVIEWS_FILE = 'reviews/ReviewsFile.jl'
@@ -34,6 +35,7 @@ def generate_vowpal():
            "incompetent", "not"]
 
     toktok = ToktokTokenizer()
+    # tagger = PerceptronTagger()
 
     vowpal_file = open(REVIEWS_VOWPAL, 'a')
     widgets = [
@@ -47,20 +49,38 @@ def generate_vowpal():
             m = get_data.search(line)
             if m:
                 stars = m.group(2)
-                date = m.group(6).replace("on ", "").replace(" ", "-").replace(",", "")
+                #   date = m.group(6).replace("on ", "").replace(" ", "-").replace(",", "")
                 text = m.group(4) + " " + m.group(8)
                 text = text.replace(":", "")
                 sentences = sent_tokenize(text)
                 tokens = [toktok.tokenize(sent) for sent in sentences]
                 tokens = list(itertools.chain.from_iterable(tokens))
+                # tags = tagger.tag(tokens)
 
                 good_words_count = 0
                 bad_words_count = 0
+                # adj_count = 0
+                # noun_count = 0
+                # verb_count = 0
+
+                # #  text_with_tags = ''
+                # for string, tag in tags:
+                #     #    text_with_tags += string + ' ' + tag + ' '
+                #     if tag == 'ADJ':
+                #         adj_count += 1
+                #     elif tag == 'VERB':
+                #         verb_count += 1
+                #     elif tag == 'NOUN':
+                #         noun_count += 1
+                #     else:
+                #         continue
+
                 for tok in tokens:
                     if str(tok).lower() in good:
                         good_words_count += 1
                     if str(tok).lower() in bad:
                         bad_words_count += 1
+
                 tokens_count = len(tokens) / 100
                 text_len = len(text) / 100
                 sents_count = len(sentences) / 100
@@ -70,7 +90,7 @@ def generate_vowpal():
                     stars + " | " + "length:" + str(text_len) + " goodWords:" + str(good_words_count) + " badWords:" +
                     str(bad_words_count) + " sentencescount:" + str(sents_count) + " wordscount:" + str(
                         tokens_count) + " "
-                    + date + " " + text + "\n")
+                    + " " + text + "\n")
     vowpal_file.close()
     return True
 
