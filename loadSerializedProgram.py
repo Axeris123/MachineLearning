@@ -5,6 +5,42 @@ from pprint import pprint
 with open('program_obj.pickl', 'rb') as f:
     obj = pickle.load(f)
 
+
+
+
+# normalize time
+for key, value in obj.items():
+    oldValue = value
+    if len(value[0]) == 7:
+        oldValue[0] = '0' + oldValue[0]
+        obj[key] = oldValue
+#pprint(obj)
+
+timetable = {}
+for key, value in obj.items():
+    oldValue = value
+    tempHour = int(value[0][0:2])
+    if (value[0][6:8] == 'pm'):
+        tempHour = int(value[0][0:2]) + 12       
+        #print(int(oldValue[0][0:2]) + 12)
+    #print(tempHour)
+    newValue = [tempHour, value[1], value[2]]
+    timetable[key] = newValue
+pprint(timetable)
+    
+
+# create graph
+graph = {}
+for key, value in timetable.items():
+    nodeList = []
+    for key2, value2 in timetable.items():
+        if (value[0] + 2 < value2[0] and value[0] + 5 > value2[0]):
+            nodeList.append(key2)
+    graph[key] = nodeList
+pprint(graph)
+
+
+'''
 tempKey = ""
 tempValue = []
 tempMark = 0
@@ -60,3 +96,4 @@ while (hour <= 10):
 # show schedule
 for key, value in schedule.items():
     print(key,"         ", value)
+'''
