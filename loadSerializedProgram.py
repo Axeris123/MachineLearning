@@ -79,10 +79,24 @@ for key, value in timetable.items():
             nodeList.append(key2)
     graph[key] = nodeList
 
+# firs and last
+first = 24
+firstMovie = ""
+last = 0
+lastMovie = ""
+for key, value in timetable.items():
+    if value[0] < first:
+        first = value[0]
+        firstMovie = key
+    if value[0] > last:
+        last = value[0]
+        lastMovie = key
+
+
 
 pathCost = 0
 
-allPaths = find_all_paths(graph, 'The Big Trees', 'Return of the Seven', pathCost)
+allPaths = find_all_paths(graph, firstMovie, lastMovie, pathCost)
 
 bestPath = evaluate_paths(allPaths)
 
